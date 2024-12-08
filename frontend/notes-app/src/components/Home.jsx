@@ -14,17 +14,19 @@ function Home() {
   const [showModel, setShowModel] = useState(false);
   const [notes, setNotes] = useState([]);
   const baseUrl = "http://localhost:3000/api";
+
   const [isPinned, setIsPinned] = useState(null);
   const [pinnedNoteId, setPinnedNoteId] = useState(null);
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [isUpdating, setIsUpdating] = useState(false);
   const [updtingId, setUpdatingId] = useState("");
-  const [usename, setUserName] = useState("");
+  const [userName, setUserName] = useState("");
   const { alert } = useOutletContext();
   const [tag, setTag] = useState("")
   const [tagArr, setTagArr] = useState([]);
   const [tagName, setTagName] = useState({});
+  const [searchVal, setSearchVal] = useState("");
 
   const handleCloseModel = () => {
     setShowModel(false);
@@ -32,7 +34,9 @@ function Home() {
 
   function getNotes() {
     fetch(`${baseUrl}/notes`, {
-      credentials: "include"
+      headers:{
+        authorization : localStorage.getItem("token")
+      },
     })
       .then((res) => {
         res.json().then((data) => {
@@ -45,6 +49,20 @@ function Home() {
       })
   }
 
+  const handleSearch = () => {
+
+  }
+
+  useEffect(() => {
+    const filteredNotes = notes.filter((note) =>
+      note.title.toLowerCase().includes(searchVal.toLowerCase())
+    )
+    setNotes(filteredNotes);
+    if (searchVal === "") {
+      getNotes();
+    }
+  }, [searchVal])
+
 
   const handlePinned = (id) => {
     const newPinnedState = pinnedNoteId === id ? false : true;
@@ -55,13 +73,13 @@ function Home() {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        authorization : localStorage.getItem("token")
       },
-      credentials: "include",
       body: JSON.stringify({ isPinned: newPinnedState }),
     })
       .then((res) => res.json())
       .then((data) => {
-       getNotes();
+        getNotes();
       })
       .catch((err) => {
         console.error("Error updating pinned state:", err);
@@ -70,12 +88,14 @@ function Home() {
 
 
   const handleDeleteNote = (id) => {
+    let result = confirm("Delete Note")
+    if(result){
     fetch(`${baseUrl}/deletenote/${id}`, {
       method: "POST",
       headers: {
-        "Content-Type": "appliccation/json"
+        "Content-Type": "appliccation/json",
+        authorization : localStorage.getItem("token")
       },
-      credentials: "include"
     })
       .then((res) => {
         res.json().then((data) => {
@@ -84,6 +104,7 @@ function Home() {
         })
       })
       .catch((err) => console.log(err))
+    }
   }
 
   const handleAddtag = () => {
@@ -104,9 +125,9 @@ function Home() {
     fetch(`${baseUrl}/createnote`, {
       method: "POST",
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
+        authorization : localStorage.getItem("token")
       },
-      credentials: "include",
       body: JSON.stringify(noteDetails)
     })
       .then((res) => {
@@ -140,7 +161,8 @@ function Home() {
     fetch(`${baseUrl}/updatenote/${updtingId}`, {
       method: "POST",
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
+        authorization : localStorage.getItem("token")
       },
       credentials: "include",
       body: JSON.stringify({ title, content, tag: tagArr })
@@ -157,15 +179,10 @@ function Home() {
   }
 
   const handleLogoutUser = () => {
-    fetch(`${baseUrl}/logout`, {
-      credentials: "include"
-    })
-      .then((res) => {
-        res.json().then((data) => {
-          alert(data.msg);
-          navigate("/login");
-        })
-      })
+    localStorage.removeItem("token");
+    setTimeout(() => {
+      navigate('/login')
+    }, 1000);
   }
 
   const handleDeleteTag = (tagName, id) => {
@@ -174,14 +191,15 @@ function Home() {
       fetch(`${baseUrl}/deletetag/${tagName}`, {
         method: "POST",
         headers: {
-          "Content-Type": "application/json"
+          "Content-Type": "application/json",
+          authorization : localStorage.getItem("token")
         },
         credentials: "include",
         body: JSON.stringify({ id })
       })
         .then((res) => {
           res.json().then((data) => {
-            alert(data.msg)
+            console.log(data)
             getNotes();
           })
         })
@@ -190,12 +208,11 @@ function Home() {
 
   useEffect(() => {
     getNotes();
-  }, [])
-
+  }, []);
 
   return (
     <>
-      <Header usename={usename} handleLogoutUser={handleLogoutUser} />
+      <Header userName={userName} handleLogoutUser={handleLogoutUser} searchVal={searchVal} setSearchVal={setSearchVal} handleSearch={handleSearch} />
       {notes.length == 0 && <div id='note-img'>
         <img src={NoteImage} alt="notes-image" />
       </div>}

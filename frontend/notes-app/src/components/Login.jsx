@@ -5,7 +5,7 @@ import Loader from './Loader';
 
 function Login() {
     const navigate = useNavigate();
-    const baseUrl = "http://localhost:3000/api"
+    const baseUrl = "http://localhost:3000/api";
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [err, seterr] = useState(false);
@@ -20,18 +20,17 @@ function Login() {
             password
         }
         setLoading(true);
-        fetch(`${baseUrl}/login`, {
+        fetch("http://localhost:3000/api/login", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },
-            credentials: "include",
             body: JSON.stringify(loginDetails)
         })
             .then((res) => {
                 res.json().then((data) => {
+                    localStorage.setItem("token",data.token);
                     setLoading(false);
-                    alert(data.msg);
                     if (data.success) {
                         navigate("/")
                     }

@@ -62,7 +62,7 @@ const handlegetNotes = async (req, res) => {
     try {
         const user = await UserModel.findOne({ _id: req.user.id });
         const notes = await Notesmodel.find({ userId: req.user.id });
-        return res.send({ notes, success: true, user });
+        return res.send({ notes, success: true, user});
     } catch (error) {
         return res.send({ msg: "internal server error", success: false });
     }

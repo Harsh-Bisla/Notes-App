@@ -6,7 +6,7 @@ import Loader from './Loader';
 
 function Signup() {
     const navigate = useNavigate();
-    const baseUrl = "http://localhost:3000/api"
+    const baseUrl = "http://localhost:3000/api";
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -27,7 +27,6 @@ function Signup() {
             headers: {
                 "Content-Type": "application/json"
             },
-            credentials: "include",
             body: JSON.stringify(signupDetails)
         }).then((res) => {
             res.json().then((data) => {

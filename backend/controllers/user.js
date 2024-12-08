@@ -19,8 +19,6 @@ const handleSignup = async (req, res) => {
                         email,
                         password: hash
                     });
-                    const token = jwt.sign({ email: newUser.email, id: newUser._id }, SECRET_KEY);
-                    res.cookie('token', token);
                     return res.send({ msg: "user created successfully", success: true });
                 }
             });
@@ -44,8 +42,7 @@ const handleLogin = async (req, res) => {
             bcrypt.compare(password, user.password, (err, result) => {
                 if (result) {
                     const token = jwt.sign({ email: user.email, id: user._id }, SECRET_KEY);
-                    res.cookie('token', token);
-                    return res.send({ msg: "logged in successfully", success: true });
+                    return res.send({ msg: "logged in successfully", success: true, token:token});
                 }
                 else {
                     return res.send({ msg: "invalid email or password", success: false })

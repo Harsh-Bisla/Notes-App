@@ -6,10 +6,15 @@
   font-family: "Poppins", sans-serif;
 }
 
+body {
+  background-color: rgba(0, 0, 0, 0.894);
+  color: white;
+}
+
 /* navbar */
 .navbar {
-  background-color: white;
-  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  box-shadow: rgba(255, 255, 255, 0.3) 0px 1px 4px;
+  color: white;
   padding: 10px 40px;
   display: flex;
   align-items: center;
@@ -25,6 +30,11 @@
   display: flex;
   align-items: center;
   gap: 20px;
+  transition: all 0.3s ease-in;
+}
+
+#user {
+  display: none;
 }
 
 .user-tag p {
@@ -54,11 +64,13 @@
   width: 100%;
   display: flex;
   align-items: center;
-  background-color: #007dd710;
   padding: 7px 10px;
+  background-color: rgba(128, 128, 128, 0.126);
   border-radius: 2px;
+  border: 1px solid rgba(255, 255, 255, 0.398);
 
   & input {
+    color: white;
     width: 100%;
     border: none;
     outline: none;
@@ -84,8 +96,8 @@
 form {
   max-width: 300px;
   width: 100%;
-  border: 1px solid rgba(0, 0, 0, 0.153);
-  box-shadow: rgba(33, 35, 38, 0.1) 0px 10px 10px -10px;
+  border: 1px solid white;
+  box-shadow: rgba(255, 255, 255, 0.6) 0px 5px 15px;
   padding: 20px;
   border-radius: 10px;
   display: flex;
@@ -101,15 +113,17 @@ form {
 }
 
 form input {
+  background-color: rgba(128, 128, 128, 0.141);
+  color: white;
   width: 98%;
   padding: 6px 0px;
   padding-left: 5px;
-  border: 1px solid rgba(0, 0, 0, 0.197);
+  border: 1px solid rgba(255, 255, 255, 0.087);
   box-shadow: rgba(33, 35, 38, 0.1) 0px 10px 10px -10px;
   border-radius: 2px;
   outline: none;
 
-  &:hover {
+  &:focus {
     outline: 1px solid #0195ff
   }
 }
@@ -181,15 +195,18 @@ form input {
   position: relative;
   max-width: 350px;
   width: 100%;
-  border: 1px solid rgba(0, 0, 0, 0.14);
   padding: 10px 20px;
   border-radius: 5px;
-  box-shadow: rgba(0, 0, 0, 0.04) 0px 3px 5px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.386);
+  background-color: #222;
+  color: white;
+  box-shadow: 0 4px 8px rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease-in-out;
 
   &:hover {
-    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(255, 255, 255, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.6);
   }
 
   & h3 {
@@ -224,8 +241,14 @@ form input {
   gap: 5px;
 
   & svg {
-    color: #0027437a;
+    color: rgba(255, 255, 255, 0.657);
     cursor: pointer;
+    transition: all linear 0.3s;
+
+    &:hover {
+      color: rgb(255, 255, 255);
+      transition: all linear 0.2s;
+    }
   }
 }
 
@@ -262,12 +285,13 @@ form input {
   border-radius: 10px;
   border: 1px solid rgba(0, 0, 0, 0.125);
   padding: 10px 20px;
-  background-color: white;
+  background-color: rgb(17, 17, 17);
+  color: white;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 
   & p {
     font-size: 12px;
-    color: #00274396;
+    color: rgba(255, 255, 255, 0.703);
     font-weight: 400;
     margin-bottom: 5px;
   }
@@ -275,7 +299,8 @@ form input {
   & textarea {
     border: none;
     outline: none;
-    background-color: #007dd716;
+    background-color: rgba(128, 128, 128, 0.167);
+    color: white;
     border-radius: 4px;
     margin-bottom: 5px;
     padding-left: 5px;
@@ -286,11 +311,16 @@ form input {
 }
 
 #input-top {
+  background-color: transparent;
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.202);
   width: 100%;
   font-size: 18px;
+  padding: 8px 0px;
+  padding-left: 5px;
   font-weight: 500;
-  border: none;
   outline: none;
+  border-radius: 5px;
   margin-bottom: 10px;
 }
 
@@ -318,13 +348,13 @@ form input {
 .tag {
   display: flex;
   align-items: center;
-  background-color: #007dd70e;
+  background-color: rgba(128, 128, 128, 0.224);
   padding: 2px 8px;
   border-radius: 4px;
-  color: black;
+  color: white;
 
   & p {
-    color: black;
+    color: white;
   }
 
   & svg {
@@ -340,6 +370,8 @@ form input {
 
   & input {
     outline: none;
+    background-color: rgba(128, 128, 128, 0.174);
+    color: white;
     border: 1px solid rgba(0, 0, 0, 0.228);
     border-radius: 2px;
     font-size: 12px;
@@ -355,7 +387,7 @@ form input {
   padding: 2px;
   cursor: pointer;
   border-radius: 2px;
-  background-color: white;
+  background-color: rgba(128, 128, 128, 0);
 }
 
 #close-model-btn {
@@ -366,7 +398,7 @@ form input {
 }
 
 /* loader */
-.loader-wrapper{
+.loader-wrapper {
   background-color: rgba(255, 255, 255, 0.16);
   display: flex;
   align-items: center;
@@ -377,7 +409,8 @@ form input {
   z-index: 1;
   top: 0;
 }
-.loader{
+
+.loader {
   width: 40px;
   height: 40px;
   border-radius: 50%;
@@ -385,17 +418,60 @@ form input {
   border-top-color: transparent;
   animation: spinner 0.4s linear infinite;
 }
-.tag-box{
+
+.tag-box {
   display: flex;
   align-items: center;
   gap: 10px;
 }
 
-@keyframes spinner{
-  from{
+@keyframes spinner {
+  from {
     transform: rotate(0deg);
   }
-  to{
+
+  to {
     transform: rotate(360deg);
+  }
+}
+
+@media (max-width:650px) {
+  .navbar {
+    padding: 10px 20px;
+  }
+
+  #user {
+    display: block;
+    font-size: 25px;
+  }
+
+  .user {
+    justify-content: start;
+    flex-direction: column;
+    padding-top: 10px;
+    gap: 5px;
+    border: 1px solid;
+    position: fixed;
+    top: 6%;
+    z-index: 1;
+    background-color: rgba(0, 0, 0, 0.43);
+    backdrop-filter: blur(5px);
+    right: 5%;
+    height: 150px;
+    width: 140px;
+    border-radius: 10px;
+    box-shadow: rgba(255, 255, 255, 0.6) 0px 5px 15px;
+    transition: all 0.3s ease-in;
+  }
+}
+
+@media (max-width:500px) {
+  .navbar {
+    padding: 10px 10px;
+    gap: 5px;
+
+    & h1 {
+      font-size: 20px;
+    }
   }
 }

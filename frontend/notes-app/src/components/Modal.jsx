@@ -5,8 +5,6 @@ import { IoMdAdd } from "react-icons/io";
 
 const Modal = ({ handleCloseModel, handleAddNote, title, setTitle, content, setContent, notes, isUpdating, handleUpdateNote, tag, setTag, handleDeleteTag, handleAddtag, tagName }) => {
 
-
-
     return (
         <>
             <div className='modal-wrapper'>
@@ -18,15 +16,15 @@ const Modal = ({ handleCloseModel, handleAddNote, title, setTitle, content, setC
                     <textarea onChange={(e) => setContent(e.target.value)} value={content} cols={50} rows={8} id="textarea" placeholder='Content' />
                     <p>TAGS</p>
                     <div className='tag-container'>
-                       {tagName.note?.map((tag, idx)=>{
-                        return (
-                            <div key={idx} className='tag'>
-                            <p>#{tag}</p>
-                            <IoIosClose onClick={() => handleDeleteTag(tag, tagName.id)} size={20} />
-                        </div>
-                        )
-                       })}
-                    
+                        {tagName.note?.map((tag, idx) => {
+                            return (
+                                <div key={idx} className='tag'>
+                                    <p>#{tag}</p>
+                                    <IoIosClose onClick={() => handleDeleteTag(tag, tagName.id)} size={20} />
+                                </div>
+                            )
+                        })}
+
 
                     </div>
                     <div className='add-tag-container'>
