@@ -22,7 +22,7 @@ app.use(cors({
 
 
 //dbConnnection
-connectMongoDb(`${URI}Notes-app`)
+connectMongoDb(`${URI}`)
     .then(() => console.log("Mongo Db Connected Successfully"))
     .catch((err) => console.log("Mongo Connection error", err));
 

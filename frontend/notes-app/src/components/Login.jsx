@@ -5,13 +5,12 @@ import Loader from './Loader';
 
 function Login() {
     const navigate = useNavigate();
-    const baseUrl = "http://localhost:3000/api";
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [err, seterr] = useState(false);
     const [errMsg, setErrMsg] = useState("");
 
-    const { alert, loading, setLoading } = useOutletContext();
+    const { alert, loading, setLoading, baseUrl } = useOutletContext();
 
     const handleLogin = (e) => {
         e.preventDefault();
@@ -20,7 +19,7 @@ function Login() {
             password
         }
         setLoading(true);
-        fetch("http://localhost:3000/api/login", {
+        fetch(`${baseUrl}/login`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"

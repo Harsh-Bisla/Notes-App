@@ -6,13 +6,12 @@ import Loader from './Loader';
 
 function Signup() {
     const navigate = useNavigate();
-    const baseUrl = "http://localhost:3000/api";
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [err, seterr] = useState(false);
     const [errMsg, setErrMsg] = useState("");
-    const { alert, loading, setLoading } = useOutletContext();
+    const { alert, loading, setLoading , baseUrl} = useOutletContext();
 
     const signup = (e) => {
         e.preventDefault();

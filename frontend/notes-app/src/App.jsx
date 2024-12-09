@@ -5,6 +5,8 @@ import 'react-toastify/dist/ReactToastify.css';
 import { useState } from 'react';
 
 function App() {
+  const baseUrl = "http://localhost:3000/api";
+
   const [loading, setLoading] = useState(false);
 
   const alert = (msg) => {
@@ -34,7 +36,7 @@ function App() {
     <>
       {/* <Header/> */}
       <ToastContainer autoClose={1500} transition={Zoom} />
-      <Outlet context={{ alert, loading, setLoading }} />
+      <Outlet context={{ alert, loading, setLoading , baseUrl}} />
     </>
   );
 }

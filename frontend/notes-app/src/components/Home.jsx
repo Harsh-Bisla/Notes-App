@@ -13,8 +13,6 @@ function Home() {
   const navigate = useNavigate();
   const [showModel, setShowModel] = useState(false);
   const [notes, setNotes] = useState([]);
-  const baseUrl = "http://localhost:3000/api";
-
   const [isPinned, setIsPinned] = useState(null);
   const [pinnedNoteId, setPinnedNoteId] = useState(null);
   const [title, setTitle] = useState("");
@@ -22,7 +20,7 @@ function Home() {
   const [isUpdating, setIsUpdating] = useState(false);
   const [updtingId, setUpdatingId] = useState("");
   const [userName, setUserName] = useState("");
-  const { alert } = useOutletContext();
+  const { alert, baseUrl } = useOutletContext();
   const [tag, setTag] = useState("")
   const [tagArr, setTagArr] = useState([]);
   const [tagName, setTagName] = useState({});
