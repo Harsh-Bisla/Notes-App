@@ -15,8 +15,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(cors({
-    origin: 'https://notes-76pfw7s6v-harsh-bislas-projects.vercel.app', // Frontend URL
-    credentials: true               // Allow cookies
+    origin: 'https://notes-76pfw7s6v-harsh-bislas-projects.vercel.app', // Allow only your frontend
 }));
 
 
