@@ -5,7 +5,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { useState } from 'react';
 
 function App() {
-  const baseUrl = "http://localhost:3000/api";
+  const baseUrl = "https://notes-app-jbod.onrender.com/api";
 
   const [loading, setLoading] = useState(false);
 
